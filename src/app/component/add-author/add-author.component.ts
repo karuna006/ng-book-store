@@ -17,9 +17,10 @@ export class AddAuthorComponent implements OnInit {
 
   ngOnInit(): void {
     // this.id = this.route.snapshot.paramMap.get('id');    
-    // this.isAddMode = !this.id;
+    // this.isAddMode = !this.id;    
     console.log(this.route.snapshot.paramMap.get('id'));
-    // console.log(this.router.url);        
+    
+        
     if(!this.isAddMode)
     {
       this.addservice.getById(this.id,'author').subscribe((author_data)=>(console.log(author_data)));
