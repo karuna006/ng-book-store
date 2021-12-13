@@ -13,23 +13,24 @@ export class AddAuthorComponent implements OnInit {
   isAddMode: boolean = true;
   public id!: any;
   routeSub: any;
+  btn:any = 'Submit';
+  title:any = 'Add';
   constructor(private addservice:AddService,private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.id = this.route.snapshot.paramMap.get('id');    
-    // this.isAddMode = !this.id;    
-    console.log(this.route.snapshot.paramMap.get('id'));
-    
-        
+    this.id = this.router.url.split('/')[2];    
+    this.isAddMode = !this.id;    
     if(!this.isAddMode)
     {
-      this.addservice.getById(this.id,'author').subscribe((author_data)=>(console.log(author_data)));
-    }
-
-    this.route.paramMap.subscribe(params => {
-      let date = params.get('id');
-      console.log(date); 
-    });    
+      this.btn = 'Update';
+      this.title = 'Update';
+      this.addservice.getById(this.id,'author').subscribe(
+        (author_data)=>
+        {
+          this.routeSub = author_data;
+          this.name = this.routeSub.name;          
+        });
+    }   
   }
 
   onSubmit()
@@ -38,15 +39,29 @@ export class AddAuthorComponent implements OnInit {
     if(!this.name)
     {
       alert('Please add a Author name!');
-      // return;
+      return;
     }
 
     const newAuthor = {
       name: this.name
     }
 
-    this.addservice.addAuthor(newAuthor).subscribe(()=>{alert('author added')});
-
+    if(!this.isAddMode)
+    {
+      this.btn = 'Update';
+      this.title = 'Update';      
+      this.addservice.updateData(this.routeSub.id,newAuthor,'author').subscribe(
+        ()=>
+        {
+          // alert('author Updated')
+          this.router.navigate(['/view-author']);
+        });
+    } 
+    else
+    {
+      this.addservice.addAuthor(newAuthor).subscribe(()=>{alert('author added')});
+    }
+    
     this.name = '';
   }
 }

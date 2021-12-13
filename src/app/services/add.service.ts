@@ -94,4 +94,11 @@ export class AddService {
     const url = `${this.getAPIbyset(set)}/${id}`;
     return this.http.get<any[]>(url);
   }
+
+  updateData(id:any,data:any,set:string):Observable<any>
+  {
+    const url = `${this.getAPIbyset(set)}/${id}`;
+    // this.notifyService.showSuccess("Task reminder Updated !!", "Success");
+    return this.http.put<any>(url,data,httpOptions);
+  }
 }

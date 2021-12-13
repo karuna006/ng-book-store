@@ -20,7 +20,7 @@
                 <td>{{index+1}}</td>
                 <td>{{publisher.name}}</td>      
                 <td style="text-align: center;">
-                    <button type="button" class="btn btn-outline-success">Edit</button>&nbsp;
+                    <button href="#" [routerLink]="['/add-Publisher/', publisher.id]" class="btn btn-outline-success">Edit</button>&nbsp;
                     <button (click)="DeletePublisher(publisher)" type="button" class="btn btn-outline-danger">Delete</button>
                 </td>
               </tr>              
