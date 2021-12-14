@@ -9,6 +9,8 @@ import { AddService } from "../../services/add.service";
 export class ViewAuthorComponent implements OnInit {
 
   author: any[] = [];
+  menu:string = 'author';
+  page:string = 'author_v';
   constructor(private addservice:AddService) { }
 
   ngOnInit(): void {

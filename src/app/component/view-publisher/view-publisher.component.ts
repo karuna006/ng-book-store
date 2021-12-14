@@ -10,6 +10,8 @@ export class ViewPublisherComponent implements OnInit {
   publisher: any[] = [];
   isMasterSel:boolean = false;
   checkedCategoryList:any;
+  menu:string = 'publisher';
+  page:string = 'publisher_v';
   constructor(private addservice:AddService) { }
 
   ngOnInit(): void {

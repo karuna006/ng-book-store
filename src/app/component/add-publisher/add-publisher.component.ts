@@ -16,6 +16,8 @@ export class AddPublisherComponent implements OnInit {
   routeSub: any;
   btn:any = 'Submit';
   title:any = 'Add';
+  menu:string = 'publisher';
+  page:string = 'publisher_a';
 
   constructor(private addservice:AddService,private router: Router,private notiservice:NotiService) { }
 

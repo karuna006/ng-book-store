@@ -34,8 +34,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{books_menu}}">
+            <a href="#" class="nav-link {{books_menu_active}}">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Books
@@ -44,21 +44,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" routerLink="/add-books" class="nav-link">
+                <a href="#" routerLink="/add-books" class="nav-link {{books_menu_a}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Books</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" routerLink="/view-books" class="nav-link">
+                <a href="#" routerLink="/view-books" class="nav-link {{books_menu_v}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Books</p>
                 </a>
               </li>              
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{author_menu}}">
+            <a href="#" class="nav-link {{author_menu_active}}">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Author
@@ -67,21 +67,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" routerLink="/add-author" class="nav-link">
+                <a href="#" routerLink="/add-author" class="nav-link {{author_menu_a}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Author</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" routerLink="/view-author" class="nav-link">
+                <a href="#" routerLink="/view-author" class="nav-link {{author_menu_v}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Author</p>
                 </a>
               </li>              
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{publisher_menu}}">
+            <a href="#" class="nav-link {{publisher_menu_active}}">
               <i class="nav-icon fas fa-share"></i>
               <p>
                 Publisher
@@ -90,13 +90,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" routerLink="/add-Publisher" class="nav-link">
+                <a href="#" routerLink="/add-Publisher" class="nav-link {{publisher_menu_a}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Publisher</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" routerLink="/view-Publisher" class="nav-link">
+                <a href="#" routerLink="/view-Publisher" class="nav-link {{publisher_menu_v}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Publisher</p>
                 </a>

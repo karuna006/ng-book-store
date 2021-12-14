@@ -24,6 +24,8 @@ export class AddBooksComponent implements OnInit {
   routeSub: any;
   btn:any = 'Submit';
   div_title:any = 'Add';
+  menu:string = 'books';
+  page:string = 'books_a';
   // add_books = new FormGroup({
   //   title: new FormControl('', [Validators.required]),
   //   author: new FormControl('', [Validators.required]),

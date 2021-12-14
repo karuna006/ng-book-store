@@ -16,6 +16,8 @@ export class AddAuthorComponent implements OnInit {
   routeSub: any;
   btn:any = 'Submit';
   title:any = 'Add';
+  menu:string = 'author';
+  page:string = 'author_a';
   constructor(private addservice:AddService,private router: Router,private route: ActivatedRoute,private notiservice:NotiService) { }
 
   ngOnInit(): void {

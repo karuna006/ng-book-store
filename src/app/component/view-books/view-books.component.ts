@@ -8,6 +8,8 @@ import { AddService } from "../../services/add.service";
 })
 export class ViewBooksComponent implements OnInit {
   books:any[] = [];
+  menu:string = 'books';
+  page:string = 'books_v';
   constructor(private addservice:AddService) { }
 
   ngOnInit(): void {
