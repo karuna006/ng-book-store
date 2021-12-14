@@ -1,37 +1,47 @@
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Author List</h3>
+<div class="wrapper">  
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>  
+  <div class="content-wrapper">   
+    <section class="content-header"></section>    
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Author List</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th style="width: 20px;">#</th>
+                    <th>Author Name</th>
+                    <th style="width: 200px;text-align: center;">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let author of author let index = index">
+                    <td>{{index+1}}</td>
+                    <td>{{author.name}}</td>      
+                    <td style="text-align: center;">
+                        <a href="#" [routerLink]="['/add-author/', author.id]" class="btn btn-outline-success">Edit</a>&nbsp;
+                        <button (click)="Deleteauthor(author)" type="button" class="btn btn-outline-danger">Delete</button>
+                    </td>
+                  </tr>              
+                  </tbody>             
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
           </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table class="table table-bordered table-hover">
-              <thead>
-              <tr>
-                <th style="width: 20px;">#</th>
-                <th>Author Name</th>
-                <th style="width: 200px;text-align: center;">Action</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let author of author let index = index">
-                <td>{{index+1}}</td>
-                <td>{{author.name}}</td>      
-                <td style="text-align: center;">
-                    <a href="#" [routerLink]="['/add-author/', author.id]" class="btn btn-outline-success">Edit</a>&nbsp;
-                    <button (click)="Deleteauthor(author)" type="button" class="btn btn-outline-danger">Delete</button>
-                </td>
-              </tr>              
-              </tbody>             
-            </table>
-          </div>
-          <!-- /.card-body -->
+          <!-- /.col -->
         </div>
-        <!-- /.card -->
+        <!-- /.row -->
       </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
+    </section>    
   </div>
+  <app-footer></app-footer> 
+</div>

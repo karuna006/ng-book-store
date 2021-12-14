@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'books';
+  header:boolean = true;
+  sidebar:boolean = true;
+  footer:boolean = true;
 }

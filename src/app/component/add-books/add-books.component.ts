@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AddService } from "../../services/add.service";
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Router,ActivatedRoute } from '@angular/router';
+import { NotiService } from '../../services/noti.service';
 
 @Component({
   selector: 'app-add-books',
@@ -9,14 +11,19 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class AddBooksComponent implements OnInit {
 
-  author :any[] =[];
-  publisher :any[] =[];
+  author :any[] = [];
+  publisher :any[] = [];
   title!:String;
   author_name!:String;
   publisher_name!:String;
   edition!:String;
   cover_pic!:string;
   sample_img!:string;
+  isAddMode: boolean = true;
+  public id!: any;
+  routeSub: any;
+  btn:any = 'Submit';
+  div_title:any = 'Add';
   // add_books = new FormGroup({
   //   title: new FormControl('', [Validators.required]),
   //   author: new FormControl('', [Validators.required]),
@@ -26,7 +33,7 @@ export class AddBooksComponent implements OnInit {
   //   sample_img: new FormControl('', [Validators.required])
   // });
 
-  constructor(private addservice:AddService) { }  
+  constructor(private addservice:AddService,private router: Router,private route: ActivatedRoute,private notiservice:NotiService) { }  
 
   ngOnInit(): void {
     this.addservice.getPublisher().subscribe(
@@ -36,6 +43,23 @@ export class AddBooksComponent implements OnInit {
     this.addservice.getAuthor().subscribe(
       (author: any[])=>(this.author = author)      
     );   
+
+    this.id = this.router.url.split('/')[2];    
+    this.isAddMode = !this.id;    
+    if(!this.isAddMode)
+    {
+      this.btn = 'Update';
+      this.div_title = 'Update';
+      this.addservice.getById(this.id,'books').subscribe(
+        (books_data)=>
+        {
+          this.routeSub = books_data;
+          this.title = this.routeSub.title;    
+          this.author_name = this.routeSub.author_name;      
+          this.publisher_name = this.routeSub.publisher_name;
+          this.edition = this.routeSub.edition;          
+        });
+    }   
   }
 
   // get f(){
@@ -43,29 +67,28 @@ export class AddBooksComponent implements OnInit {
   // }
 
   onSubmit()
-  {
-    // console.log(this.name);
+  {    
     if(!this.title)
-    {
-      alert('Please add a book name!');
+    {      
+      this.notiservice.showError("Please enter the book name !!", "Warning");
       return;
     }
 
     if(!this.author_name)
-    {
-      alert('Please select a Author name!');
+    {      
+      this.notiservice.showError("Please Select a author !!", "Warning");
       return;
     }
 
     if(!this.publisher_name)
     {
-      alert('Please select a publisher name!');
+      this.notiservice.showError("Please enter a publisher !!", "Warning");      
       return;
     }
 
     if(!this.edition)
-    {
-      alert('Please add a edition!');
+    {      
+      this.notiservice.showError("Please enter a edition !!", "Warning");
       return;
     }
 
@@ -76,11 +99,27 @@ export class AddBooksComponent implements OnInit {
       edition: this.edition,
       // cover_pic: this.cover_pic,
       // sample_img: this.sample_img
+    }  
+
+    if(!this.isAddMode)
+    {
+      this.btn = 'Update';
+      this.div_title = 'Update';      
+      this.addservice.updateData(this.routeSub.id,newBook,'books').subscribe(
+        ()=>
+        {          
+          this.router.navigate(['/view-books']);
+          this.notiservice.showSuccess("Book updated", "Updated Successfully");
+        });
     }
-
-    // console.log(newBook);
-
-    this.addservice.addBooks(newBook).subscribe(()=>{alert('new Book added')});
+    else
+    {      
+      this.addservice.addBooks(newBook).subscribe(
+        ()=>
+        {          
+          this.notiservice.showSuccess("Book added", "Added Successfully");
+        });
+    }
 
     this.title = '';
     this.author_name = '';

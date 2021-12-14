@@ -1,67 +1,78 @@
-<div class="container-fluid">
-    <div class="row">
-      <!-- left column -->
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <!-- general form elements -->
-        <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Add Books</h3>
-          </div>
-          <!-- /.card-header -->
-          <!-- form start -->
-          <form (ngSubmit)="onSubmit()">
-            <div class="card-body">
-              <div class="form-group">
-                <label for="title">Title</label>
-                <input [(ngModel)]="title" name="title" type="text" class="form-control" id="title" placeholder="Enter Title">               
-              </div>
-              <div class="form-group">
-                <label for="author">Author</label>                
-                <select [(ngModel)]="author_name" name="author_name" class="form-control" style="width: 100%;">
-                    <!-- <option value="">-- Select Author --</option> -->
-                    <option *ngFor="let author of author" value="{{author.name}}">{{author.name}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="publisher">Publisher</label>                
-                <select [(ngModel)]="publisher_name" name="publisher_name" class="form-control" style="width: 100%;">
-                    <!-- <option value="">-- Select Publisher --</option> -->
-                    <option *ngFor="let publisher of publisher" value="{{publisher.name}}">{{publisher.name}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="edition">Edition</label>
-                <input [(ngModel)]="edition" name="edition" type="text" class="form-control" id="edition" placeholder="Edition">
-              </div>
-              <!-- <div class="form-group">
-                <label for="cover_pic">Cover Pic</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="cover_pic">
-                    <label class="custom-file-label" for="cover_pic">Choose file</label>
-                  </div>                  
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="sample_images">Sample Images</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="sample_images">
-                    <label class="custom-file-label" for="sample_images">Choose file</label>
-                  </div>                  
-                </div>
-              </div> -->
-            </div>
-            <!-- /.card-body -->
+<div class="wrapper">  
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>  
+  <div class="content-wrapper">   
+    <section class="content-header"></section>    
+    <section class="content">
+      <div class="container-fluid">
+            <div class="row">
+              <!-- left column -->
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">{{div_title}} Books</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+                  <form (ngSubmit)="onSubmit()">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="title">Title</label>
+                        <input [(ngModel)]="title" name="title" type="text" class="form-control" id="title" placeholder="Enter Title">
+                      </div>
+                      <div class="form-group">
+                        <label for="author">Author</label>                   
+                        <select [(ngModel)]="author_name" name="author_name" class="form-control" style="width: 100%;">
+                            <!-- <option value="">-- Select Author --</option> -->
+                            <!-- [selected]="author.name === author_name" -->
+                            <option *ngFor="let author of author" value="{{author.name}}">{{author.name}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="publisher">Publisher</label>                
+                        <select [(ngModel)]="publisher_name" name="publisher_name" class="form-control" style="width: 100%;">
+                            <!-- <option value="">-- Select Publisher --</option> -->
+                            <option *ngFor="let publisher of publisher" value="{{publisher.name}}">{{publisher.name}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="edition">Edition</label>
+                        <input [(ngModel)]="edition" name="edition" type="text" class="form-control" id="edition" placeholder="Edition">
+                      </div>
+                      <!-- <div class="form-group">
+                        <label for="cover_pic">Cover Pic</label>
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="cover_pic">
+                            <label class="custom-file-label" for="cover_pic">Choose file</label>
+                          </div>                  
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="sample_images">Sample Images</label>
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="sample_images">
+                            <label class="custom-file-label" for="sample_images">Choose file</label>
+                          </div>                  
+                        </div>
+                      </div> -->
+                    </div>
+                    <!-- /.card-body -->
 
-            <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary">{{btn}}</button>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.card -->
+              </div>
+              <div class="col-md-3"></div>
             </div>
-          </form>
-        </div>
-        <!-- /.card -->
       </div>
-      <div class="col-md-3"></div>
-    </div>
+    </section>    
+  </div>
+  <app-footer></app-footer> 
 </div>

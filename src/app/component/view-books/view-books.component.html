@@ -1,43 +1,53 @@
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Book List</h3>
+<div class="wrapper">  
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>  
+  <div class="content-wrapper">   
+    <section class="content-header"></section>    
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Book List</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th style="width: 20px;">#</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Edition</th>
+                    <th style="width: 200px;text-align: center;">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let books of books let index = index">
+                    <td>{{index+1}}</td>
+                    <td>{{books.title}}</td>      
+                    <td>{{books.author_name}}</td>
+                    <td>{{books.publisher_name}}</td>
+                    <td>{{books.edition}}</td>
+                    <td style="text-align: center;">
+                        <a href="#" [routerLink]="['/add-books/', books.id]" class="btn btn-outline-success">Edit</a>&nbsp;
+                        <button (click)="Deletebook(books)" type="button" class="btn btn-outline-danger">Delete</button>
+                    </td>
+                  </tr>              
+                  </tbody>             
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
           </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table class="table table-bordered table-hover">
-              <thead>
-              <tr>
-                <th style="width: 20px;">#</th>
-                <th>Book Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>Edition</th>
-                <th style="width: 200px;text-align: center;">Action</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let books of books let index = index">
-                <td>{{index+1}}</td>
-                <td>{{books.title}}</td>      
-                <td>{{books.author_name}}</td>
-                <td>{{books.publisher_name}}</td>
-                <td>{{books.edition}}</td>
-                <td style="text-align: center;">
-                    <button type="button" class="btn btn-outline-success">Edit</button>&nbsp;
-                    <button (click)="Deletebook(books)" type="button" class="btn btn-outline-danger">Delete</button>
-                </td>
-              </tr>              
-              </tbody>             
-            </table>
-          </div>
-          <!-- /.card-body -->
+          <!-- /.col -->
         </div>
-        <!-- /.card -->
+        <!-- /.row -->
       </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
+    </section>    
   </div>
+  <app-footer></app-footer> 
+</div>

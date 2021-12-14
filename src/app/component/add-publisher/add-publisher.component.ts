@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddService } from "../../services/add.service";
 import { Router,ActivatedRoute } from '@angular/router';
+import { NotiService } from '../../services/noti.service';
 
 @Component({
   selector: 'app-add-publisher',
@@ -16,7 +17,7 @@ export class AddPublisherComponent implements OnInit {
   btn:any = 'Submit';
   title:any = 'Add';
 
-  constructor(private addservice:AddService,private router: Router) { }
+  constructor(private addservice:AddService,private router: Router,private notiservice:NotiService) { }
 
   ngOnInit(): void {
     this.id = this.router.url.split('/')[2];    
@@ -38,8 +39,8 @@ export class AddPublisherComponent implements OnInit {
   {
     
     if(!this.name)
-    {
-      alert('Please add a Publisher name!');
+    {      
+      this.notiservice.showError("Please enter the author name !!", "Warning");
       return;
     }
 
@@ -55,11 +56,17 @@ export class AddPublisherComponent implements OnInit {
         ()=>
         {
           this.router.navigate(['/view-Publisher']);
+          this.notiservice.showSuccess("Publisher updated", "Updated Successfully");          
         });
     } 
     else
     {
-      this.addservice.addPublisher(addPublisher).subscribe(()=>{alert('Publisher added')});      
+      this.addservice.addPublisher(addPublisher).subscribe(
+        ()=>
+        {
+          // alert('Publisher added')
+          this.notiservice.showSuccess("Publisher added", "added Successfully");          
+        });      
     }
 
     this.name = '';

@@ -1,37 +1,51 @@
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Publisher List</h3>
+<div class="wrapper">  
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>  
+  <div class="content-wrapper">   
+    <section class="content-header"></section>    
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Publisher List</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th style="width: 20px;"><input [(ngModel)]="isMasterSel" (change)="checkUncheckAll()" type="checkbox"></th>
+                    <th style="width: 20px;">#</th>
+                    <th>Publisher Name</th>
+                    <th style="width: 200px;text-align: center;">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let publisher of publisher let index = index">
+                    <td><input type="checkbox" [(ngModel)]="publisher.isSelected"></td>
+                    <td>{{index+1}}</td>
+                    <td>{{publisher.name}}</td>      
+                    <td style="text-align: center;">
+                        <button href="#" [routerLink]="['/add-Publisher/', publisher.id]" class="btn btn-outline-success">Edit</button>&nbsp;
+                        <button (click)="DeletePublisher(publisher)" type="button" class="btn btn-outline-danger">Delete</button>
+                    </td>
+                  </tr>              
+                  </tbody>             
+                </table>
+                <br>
+                <button class="btn btn-success pull-right" (click)="getCheckedItemList()">Get checked data</button><p>{{checkedCategoryList}}</p>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
           </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table class="table table-bordered table-hover">
-              <thead>
-              <tr>
-                <th style="width: 20px;">#</th>
-                <th>Publisher Name</th>
-                <th style="width: 200px;text-align: center;">Action</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let publisher of publisher let index = index">
-                <td>{{index+1}}</td>
-                <td>{{publisher.name}}</td>      
-                <td style="text-align: center;">
-                    <button href="#" [routerLink]="['/add-Publisher/', publisher.id]" class="btn btn-outline-success">Edit</button>&nbsp;
-                    <button (click)="DeletePublisher(publisher)" type="button" class="btn btn-outline-danger">Delete</button>
-                </td>
-              </tr>              
-              </tbody>             
-            </table>
-          </div>
-          <!-- /.card-body -->
+          <!-- /.col -->
         </div>
-        <!-- /.card -->
+        <!-- /.row -->
       </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
+    </section>    
   </div>
+  <app-footer></app-footer> 
+</div>

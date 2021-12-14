@@ -5,13 +5,17 @@
       "id": 1
     },
     {
-      "name": "Publisher 2",
+      "name": "Publisher 4",
       "id": 3
+    },
+    {
+      "name": "demo 1231",
+      "id": 4
     }
   ],
   "publisher": [
     {
-      "name": "Publisher 1",
+      "name": "Publisher 2",
       "id": 1
     },
     {
@@ -21,15 +25,36 @@
     {
       "name": "demo 201",
       "id": 3
+    },
+    {
+      "name": "Publisher 222",
+      "id": 4
+    },
+    {
+      "name": "Publisher 2112",
+      "id": 5
     }
   ],
   "books": [
     {
       "title": "101",
-      "author_name": "demo 20",
-      "publisher_name": "Publisher 1",
+      "author_name": "demo 12",
+      "publisher_name": "Publisher 2",
       "edition": "2021",
       "id": 1
+    },
+    {
+      "title": "102",
+      "author_name": "demo 12",
+      "publisher_name": "Publisher 2",
+      "edition": "2021",
+      "id": 2
+    }
+  ],
+  "login":[
+    {
+      "username": "admin",
+      "password": "admin"
     }
   ]
 }

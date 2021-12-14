@@ -15,7 +15,9 @@ export class AddService {
   private authorAPI = 'http://localhost:3000/author';
   private publisherAPI = 'http://localhost:3000/publisher';
   private bookAPI = 'http://localhost:3000/books';
-  private setAPI!:string;  
+  private loginAPI = 'http://localhost:3000/login';
+  private setAPI!:string;
+  private loggedInStatus:boolean = false;
   constructor(private http:HttpClient) { }
 
   getAPIbyset(set:String)
@@ -100,5 +102,28 @@ export class AddService {
     const url = `${this.getAPIbyset(set)}/${id}`;
     // this.notifyService.showSuccess("Task reminder Updated !!", "Success");
     return this.http.put<any>(url,data,httpOptions);
+  }
+
+  getLogindata(username:any,password:any) : Observable<any[]>
+  {
+    const url = `${this.loginAPI}?username=${username}&password=${password}`;
+    return this.http.get<any[]>(url);
+  }
+
+  setLoggedIN(value:boolean)
+  {
+    this.loggedInStatus = value;
+  }
+
+  get isLoggedIn()
+  {
+    if(localStorage.getItem('userdata') === null)
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }    
   }
 }

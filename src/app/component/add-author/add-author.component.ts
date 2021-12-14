@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddService } from "../../services/add.service";
 import { Router,ActivatedRoute } from '@angular/router';
+import { NotiService } from '../../services/noti.service';
 
 @Component({
   selector: 'app-add-author',
@@ -15,7 +16,7 @@ export class AddAuthorComponent implements OnInit {
   routeSub: any;
   btn:any = 'Submit';
   title:any = 'Add';
-  constructor(private addservice:AddService,private router: Router,private route: ActivatedRoute) { }
+  constructor(private addservice:AddService,private router: Router,private route: ActivatedRoute,private notiservice:NotiService) { }
 
   ngOnInit(): void {
     this.id = this.router.url.split('/')[2];    
@@ -35,10 +36,10 @@ export class AddAuthorComponent implements OnInit {
 
   onSubmit()
   {
-    console.log(this.name);
+    // console.log(this.name);
     if(!this.name)
     {
-      alert('Please add a Author name!');
+      this.notiservice.showError("Please enter the author name !!", "Warning");
       return;
     }
 
@@ -52,14 +53,19 @@ export class AddAuthorComponent implements OnInit {
       this.title = 'Update';      
       this.addservice.updateData(this.routeSub.id,newAuthor,'author').subscribe(
         ()=>
-        {
-          // alert('author Updated')
+        {          
           this.router.navigate(['/view-author']);
+          this.notiservice.showSuccess("Author updated", "Updated Successfully");
         });
     } 
     else
     {
-      this.addservice.addAuthor(newAuthor).subscribe(()=>{alert('author added')});
+      this.addservice.addAuthor(newAuthor).subscribe(
+        ()=>
+        {
+          // alert('author added')
+          this.notiservice.showSuccess("Author added", "Added Successfully");
+        });
     }
     
     this.name = '';
