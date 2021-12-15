@@ -1,1 +1,142 @@
-<p>noti works!</p>
+<div class="wrapper">  
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>  
+    <div class="content-wrapper">   
+      <section class="content-header"></section>    
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Notifications List</h3>
+                  <div class="card-tools">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modal-lg">Add</button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <th style="width: 20px;">#</th>
+                      <th>Title</th>
+                      <th>message</th>
+                      <th>engineers</th>
+                      <th>customers</th>
+                      <!-- <th style="width: 200px;text-align: center;">Action</th> -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let noti of noti let index = index">
+                        <td>{{index+1}}</td>
+                        <td>{{noti.title}}</td>
+                        <td>{{noti.message}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>              
+                    </tbody>             
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+
+
+        <div class="modal fade" id="modal-lg">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Add Notifications</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="onSubmit($event)">
+                        <div class="card-body">
+                          <div class="form-group">
+                            <label for="name">Title</label>
+                            <input [(ngModel)]="title" name="title" type="text" class="form-control" id="title" placeholder="Enter Title">
+                          </div>              
+                          <div class="form-group">
+                            <label for="name">Message</label>
+                            <input [formControl]="messageCT" (keyup)="print()" name="message" type="text" class="form-control" id="message" placeholder="Enter Message">
+                            <span *ngIf="messageCT.errors.max">Invalid</span>
+                          </div>
+                          {{messageCT.value}}
+                          <div class="form-group">
+                            <label for="name">Category</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <!-- (change)="onCategory($event)"  -->
+                                    <select [(ngModel)]="category" (change)="onCategory($event)" name="author_name" class="form-control" style="width: 100%;">
+                                        <option value="">-- Select Category --</option>
+                                        <option value="1">Engineers</option>
+                                        <option value="2">Customers</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                     <!-- (change)="onlisting($event)"  -->
+                                    <select *ngIf="category" [(ngModel)]="list" (change)="onCategory($event)" name="send_type" class="form-control" style="width: 100%;">                            
+                                        <option value="1">To All</option>
+                                        <option value="2">Custom</option>
+                                    </select>
+                                </div>
+                                                                
+                                <table class="table table-bordered table-hover mt-5">
+                                    <thead>
+                                    <tr>
+                                      <th style="width: 20px;">#</th>
+                                      <th>Name</th>
+                                      <th>Mobile</th>
+                                      <th>Email</th>
+                                      <th>Code</th>
+                                      <!-- <th style="width: 200px;text-align: center;">Action</th> -->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngIf="listname">                                        
+                                        <td colspan="5" class="text-center">{{listname}}</td>
+                                    </tr>
+                                    <tr *ngFor="let listdatas of listdata let index = index">
+                                        <td><input (change)="setselectedData($event)" type="checkbox" name="listing[]" value="{{changeData(listdatas)}}"></td>
+                                        <td>
+                                            <!-- {{changeData(listdatas)}} -->
+                                            {{listdatas.name}}
+                                        </td>
+                                        <td>{{listdatas.mobile}}</td>
+                                        <td>{{listdatas.email}}</td>
+                                        <td></td>
+                                    </tr>              
+                                    </tbody>             
+                                  </table>
+                            </div>                            
+                          </div>
+                        </div>
+                        <!-- /.card-body -->
+      
+                        <div style="padding-left: 90%;">
+                          <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                      </form>
+                </div>
+                <!-- <div class="modal-footer justify-content-between"> -->
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                <!-- </div> -->
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+      </section>    
+    </div>
+    <app-footer></app-footer> 
+  </div>

@@ -16,6 +16,9 @@ export class AddService {
   private publisherAPI = 'http://localhost:3000/publisher';
   private bookAPI = 'http://localhost:3000/books';
   private loginAPI = 'http://localhost:3000/login';
+  private notiAPI = 'http://localhost:3000/notifications';
+  private customerAPI = 'http://localhost:3000/customer';
+  private engineersAPI = 'http://localhost:3000/engineers';
   private setAPI!:string;
   private loggedInStatus:boolean = false;
   constructor(private http:HttpClient) { }
@@ -89,6 +92,21 @@ export class AddService {
     const url = `${this.bookAPI}/${books.id}`;
     // this.notifyService.showSuccess("Task Deleted !!", "Success");
     return this.http.delete<any>(url);
+  }
+
+  getnoti() : Observable<any[]>
+  {
+    return this.http.get<any[]>(this.notiAPI);
+  }
+
+  getcus() : Observable<any[]>
+  {
+    return this.http.get<any[]>(this.customerAPI);
+  }
+
+  geteng() : Observable<any[]>
+  {
+    return this.http.get<any[]>(this.engineersAPI);
   }
 
   getById(id:number,set:string) : Observable<any[]>

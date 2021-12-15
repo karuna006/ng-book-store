@@ -24,9 +24,7 @@
                       </div>
                       <div class="form-group">
                         <label for="author">Author</label>                   
-                        <select [(ngModel)]="author_name" name="author_name" class="form-control" style="width: 100%;">
-                            <!-- <option value="">-- Select Author --</option> -->
-                            <!-- [selected]="author.name === author_name" -->
+                        <select [(ngModel)]="author_name" name="author_name" class="form-control" style="width: 100%;">                            
                             <option *ngFor="let author of author" value="{{author.name}}">{{author.name}}</option>
                         </select>
                       </div>
