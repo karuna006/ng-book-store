@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddService } from "../../services/add.service";
 
 @Component({
@@ -21,11 +20,6 @@ export class NotiComponent implements OnInit {
   message!:string;
   arr_name!:{};
   sendToId_list:any[] = [];
-  messageCT =new FormControl('',[Validators.required,Validators.max(8)]);
-  customer = new FormGroup({
-    name:new FormControl(''),
-    age:new FormControl('')
-  })
   constructor(private addservice:AddService) { }
 
   ngOnInit(): void {
@@ -35,17 +29,6 @@ export class NotiComponent implements OnInit {
           this.noti = noti.slice(0,10);          
         }      
     );
-    
-  }
-  print(){
-  
-    console.log("this.messageCT.value=====>",this.messageCT.value);
-    if(!this.messageCT.valid){
-      alert("Message In Valid");
-    }
-    else{
-      alert("Message Valid");
-    }
   }
 
   changeData(value:any){
@@ -166,13 +149,13 @@ export class NotiComponent implements OnInit {
   {
     if(value.currentTarget.checked)
     {
-      console.log(value.target.value);
+      // console.log(value.target.value);
       this.selectedlist.push(JSON.parse(value.target.value));
       // console.log(">>>>>>>",this.selectedlist)
     }
     else
     {
-      let index = this.selectedlist.indexOf(value.target.value);
+      let index = this.selectedlist.indexOf(JSON.parse(value.target.value));
       if (index > -1)
       {
         this.selectedlist.splice(index, 1);
@@ -198,6 +181,6 @@ export class NotiComponent implements OnInit {
       // this.sendToId(),
     }
     console.log(sendNoti);
-    // console.log(this.arr_name);
+    console.log(this.selectedlist);
   }
 }
