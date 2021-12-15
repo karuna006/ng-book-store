@@ -8,6 +8,7 @@ import { AddPublisherComponent } from "./component/add-publisher/add-publisher.c
 import { ViewPublisherComponent } from "./component/view-publisher/view-publisher.component";
 import { LoginComponent } from "./component/login/login.component";
 import { HomeComponent } from "./component/home/home.component";
+import { NotiComponent } from "./component/noti/noti.component";
 import { AuthGuard } from "./auth.guard";
 
 const Routes: Routes = [  
@@ -65,6 +66,11 @@ const Routes: Routes = [
   {
     path: 'home',
     component:HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'notifications',
+    component:NotiComponent,
     canActivate: [AuthGuard],
   }
 ]

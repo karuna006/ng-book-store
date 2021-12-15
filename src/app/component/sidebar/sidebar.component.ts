@@ -12,6 +12,8 @@ export class SidebarComponent implements OnInit {
   author_menu!:string;
   books_menu!:string;
   publisher_menu!: string;
+  dashboard_menu!: string;
+  dashboard_menu_active!: string;
   author_menu_active!:string;
   books_menu_active!:string;
   publisher_menu_active!: string;
@@ -24,7 +26,7 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.page);
+    console.log(this.menu);
     if(this.menu == 'author')
     {
       this.author_menu = 'menu-open';
@@ -36,7 +38,7 @@ export class SidebarComponent implements OnInit {
       else if(this.page == 'author_v')
       {
         this.author_menu_v = 'active';
-        console.log('imin:',this.page);
+        // console.log('imin:',this.page);
       }
     }
     else if(this.menu == 'books')
@@ -52,7 +54,7 @@ export class SidebarComponent implements OnInit {
         this.books_menu_v = 'active';
       }
     }
-    else if(this.menu = 'publisher')
+    else if(this.menu == 'publisher')
     {
       this.publisher_menu = 'menu-open';
       this.publisher_menu_active = 'active';
@@ -64,6 +66,11 @@ export class SidebarComponent implements OnInit {
       {
         this.publisher_menu_v = 'active';
       }
+    }
+    else if(this.menu == 'dashboard')
+    {      
+      console.log('data:',this.menu);
+      this.dashboard_menu_active = 'active';
     }
   }
 }

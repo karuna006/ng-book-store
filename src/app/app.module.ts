@@ -21,6 +21,7 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { HomeComponent } from './component/home/home.component';
 import { AuthGuard } from "./auth.guard";
+import { NotiComponent } from './component/noti/noti.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AuthGuard } from "./auth.guard";
     AddPublisherComponent,
     ViewPublisherComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NotiComponent
   ],
   imports: [
     BrowserModule,
