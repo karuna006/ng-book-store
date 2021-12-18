@@ -7,7 +7,7 @@ import { AddService } from "../../services/add.service";
   styleUrls: ['./view-publisher.component.css']
 })
 export class ViewPublisherComponent implements OnInit {  
-  publisher: any[] = [];
+  publisher!: any[];
   isMasterSel:boolean = false;
   checkedCategoryList:any;
   menu:string = 'publisher';

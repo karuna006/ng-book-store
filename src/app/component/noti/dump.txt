@@ -8,7 +8,8 @@ import { AddService } from "../../services/add.service";
 })
 export class NotiComponent implements OnInit {
 
-  noti!: any[];
+  noti: any[] = [];
+  noti_all!:any;
   category:string = '';
   list:string = '1';
   listdata!:any;
@@ -19,7 +20,7 @@ export class NotiComponent implements OnInit {
   title!:string;
   message!:string;
   arr_name!:any;
-  sendToId_list!:any[];  
+  sendToId_list!:any[];
   constructor(private addservice:AddService) { }
 
   ngOnInit(): void {
@@ -105,15 +106,16 @@ export class NotiComponent implements OnInit {
   }
 
   sendToId():any
-  {    
+  {
     if(this.list != '1')
     {
-      this.sendToId_list = this.selectedlist;      
+      this.sendToId_list = this.selectedlist;
+      // console.log(this.sendToId_list.length);
     }
     else
     {
       this.sendToId_list = this.getlist();
-      console.log('as',this.sendToId_list);
+      console.log(this.sendToId_list);
     }
 
     if(this.category == '1')
@@ -125,11 +127,11 @@ export class NotiComponent implements OnInit {
       this.arr_name ="_customer_id"; 
     } 
 
-    // this.sendToId_list.forEach( res => {
-    //   console.log('imin');
-    //   res[this.arr_name] = res['_id'];
-    //   // delete res['_id'];
-    // });
+    this.sendToId_list.forEach( res => {
+      // console.log('imin');
+      res[this.arr_name] = res['_id'];
+      // delete res['_id'];
+    });
 
 
     return this.sendToId_list;
@@ -138,26 +140,33 @@ export class NotiComponent implements OnInit {
   getlist():any
   {
     if(this.category == '2')
-    { 
-      this.selectedlist = [];     
+    {      
       this.addservice.getcus().subscribe(
-        (noti: any)=>
-          {                        
-            this.selectedlist.push(noti);            
+        (noti_all: any[])=>
+          {
+            // this.sendToId_list.push(noti); 
+            this.noti_all = (noti_all); 
+            return this.noti_all;
+            // this.dumplistdata.forEach( res => {
+            //     this.selectedlist.push(res._id.$oid);
+            // });
           }
       );               
     }
     else
     {      
-      this.selectedlist = [];
       this.addservice.geteng().subscribe(
-        (noti: any)=>
+        (noti_all: any[])=>
           {
-            this.selectedlist.push(noti);             
+            // this.sendToId_list.push(noti); 
+            this.noti_all = (noti_all); 
+            return this.noti_all;
+            // this.dumplistdata.forEach( res => {
+            //     this.selectedlist.push(res._id.$oid);
+            // });
           }      
       );                       
     }
-    return this.selectedlist;
   }
 
   setselectedData(value:any)

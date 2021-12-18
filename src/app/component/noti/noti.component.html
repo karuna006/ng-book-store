@@ -67,13 +67,14 @@
                           <div class="form-group">
                             <label for="name">Message</label>
                             <input [(ngModel)]="message" name="message" type="text" class="form-control" id="message" placeholder="Enter Message">
+                            {{message}}
                           </div>
                           <div class="form-group">
                             <label for="name">Category</label>
                             <div class="row">
                                 <div class="col-6">
                                     <!-- (change)="onCategory($event)"  -->
-                                    <select [(ngModel)]="category" (change)="onCategory($event)" name="author_name" class="form-control" style="width: 100%;">
+                                    <select (change)="onCategory($event)" name="author_name" class="form-control" style="width: 100%;">
                                         <option value="">-- Select Category --</option>
                                         <option value="1">Engineers</option>
                                         <option value="2">Customers</option>
@@ -81,13 +82,13 @@
                                 </div>
                                 <div class="col-6">
                                      <!-- (change)="onlisting($event)"  -->
-                                    <select *ngIf="category" [(ngModel)]="list" (change)="onCategory($event)" name="send_type" class="form-control" style="width: 100%;">                            
+                                    <select *ngIf="category" (change)="onCategory2($event)" name="send_type" class="form-control" style="width: 100%;">                            
                                         <option value="1">To All</option>
                                         <option value="2">Custom</option>
                                     </select>
                                 </div>
                                                                 
-                                <table class="table table-bordered table-hover mt-5">
+                                <table *ngIf="listname" class="table table-bordered table-hover mt-5">
                                     <thead>
                                     <tr>
                                       <th style="width: 20px;">#</th>
@@ -103,7 +104,7 @@
                                         <td colspan="5" class="text-center">{{listname}}</td>
                                     </tr>
                                     <tr *ngFor="let listdatas of listdata let index = index">
-                                        <td><input (change)="setselectedData($event)" type="checkbox" name="listing[]" value="{{changeData(listdatas)}}"></td>
+                                        <td><input [checked]="listdatas.isSelected" (change)="setselectedData($event)" type="checkbox" value="{{changeData(listdatas)}}"></td>
                                         <td>
                                             <!-- {{changeData(listdatas)}} -->
                                             {{listdatas.name}}
